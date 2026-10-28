@@ -1,7 +1,7 @@
 // Thin client for the mlc-reader API (see src/bin/api.rs in the Rust crate).
-// Override the base URL with VITE_API_URL; defaults to the local axum server.
+// Browser calls same-origin `/api/...`; `src/routes/api/[...path]` proxies to API_URL.
 
-const BASE = (import.meta.env.VITE_API_URL ?? 'http://localhost:8080').replace(/\/$/, '');
+const BASE = '';
 
 export type Role = 'publisher' | 'writer';
 

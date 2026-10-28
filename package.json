@@ -6,8 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
-		"start": "node build",
+		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -20,7 +19,7 @@
 		"@fontsource/ibm-plex-mono": "^5.3.0",
 		"@fontsource/ibm-plex-sans": "^5.3.0",
 		"@lucide/svelte": "^1.59.0",
-		"@sveltejs/adapter-node": "^6.0.0",
+		"@sveltejs/adapter-vercel": "^7.0.1",
 		"@sveltejs/kit": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.0",
