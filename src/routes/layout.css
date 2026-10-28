@@ -1,0 +1,186 @@
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'tailwindcss';
+
+/*
+ * Paper & ink. The pages are written against Tailwind's stone scale, so the
+ * scale itself is retuned here: stone-50 is the page, white is the card stock,
+ * stone-900 is ink. Accent is a faded vermilion, used sparingly.
+ */
+@theme {
+	--font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+	--font-display: 'Fraunces Variable', Georgia, serif;
+
+	--color-white: #fcfaf5;
+	--color-stone-50: #f2ede2;
+	--color-stone-100: #e9e2d3;
+	--color-stone-200: #dbd1bd;
+	--color-stone-300: #c6b99f;
+	--color-stone-400: #a29680;
+	--color-stone-500: #7b7161;
+	--color-stone-600: #5d5548;
+	--color-stone-700: #423c32;
+	--color-stone-800: #2c2821;
+	--color-stone-900: #1c1914;
+
+	--color-accent: #d4512b;
+	--color-accent-soft: #f4d9c9;
+
+	/* disputes / under-claimed shares read as mustard, errors as brick */
+	--color-amber-100: #f3e3b5;
+	--color-amber-700: #94650c;
+	--color-amber-800: #7a530a;
+	--color-red-50: #f8e6df;
+	--color-red-200: #e7b9a8;
+	--color-red-700: #a1361c;
+
+	--radius-sm: 2px;
+	--radius: 3px;
+	--radius-md: 3px;
+	--radius-lg: 4px;
+
+	/* hard offset shadow: the one deliberately retro flourish */
+	--shadow-sm: 3px 3px 0 0 var(--color-stone-900);
+	--shadow-xl: 6px 6px 0 0 var(--color-stone-900);
+}
+
+@layer base {
+	html {
+		background: var(--color-stone-50);
+		-webkit-font-smoothing: antialiased;
+		font-feature-settings: 'ss02';
+	}
+
+	body {
+		/* faint paper grain */
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	}
+
+	::selection {
+		background: var(--color-accent-soft);
+		color: var(--color-stone-900);
+	}
+
+	h1,
+	h2 {
+		font-family: var(--font-display);
+		font-variation-settings:
+			'SOFT' 100,
+			'WONK' 0,
+			'opsz' 72;
+		letter-spacing: -0.015em;
+	}
+
+	h1 {
+		font-weight: 500;
+	}
+
+	h2 {
+		font-weight: 450;
+	}
+
+	/* small caps-style labels and table headers set in mono */
+	.uppercase,
+	thead th,
+	dt {
+		font-family: var(--font-mono);
+		letter-spacing: 0.08em;
+	}
+
+	dt {
+		text-transform: uppercase;
+		font-size: 0.68rem;
+	}
+
+	.tabular-nums,
+	td {
+		font-variant-numeric: tabular-nums;
+	}
+
+	thead {
+		border-bottom: 1px solid var(--color-stone-900);
+	}
+
+	a {
+		text-underline-offset: 3px;
+		text-decoration-thickness: 1px;
+	}
+
+	input,
+	textarea {
+		caret-color: var(--color-accent);
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: var(--color-stone-900) !important;
+		--tw-ring-color: var(--color-accent-soft) !important;
+	}
+
+	::placeholder {
+		color: var(--color-stone-400);
+	}
+
+	/* primary actions press into the page */
+	button[type='submit'] {
+		box-shadow: var(--shadow-sm);
+		border: 1px solid var(--color-stone-900);
+		transition:
+			transform 80ms ease,
+			box-shadow 80ms ease,
+			background-color 120ms ease;
+	}
+
+	button[type='submit']:not(:disabled):hover {
+		background: var(--color-accent);
+	}
+
+	button[type='submit']:not(:disabled):active {
+		transform: translate(3px, 3px);
+		box-shadow: none;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+}
+
+@utility font-display {
+	font-family: var(--font-display);
+	font-variation-settings:
+		'SOFT' 100,
+		'WONK' 1,
+		'opsz' 144;
+}
+
+@utility card {
+	background: var(--color-white);
+	border: 1px solid var(--color-stone-900);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-sm);
+}
+
+/* bits-ui dialogs expose data-state; animate on it */
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+}
+@keyframes pop-in {
+	from {
+		opacity: 0;
+		translate: -50% calc(-50% + 8px);
+	}
+}
+.dialog-overlay[data-state='open'] {
+	animation: fade-in 140ms ease-out;
+}
+.dialog-content[data-state='open'] {
+	animation: pop-in 160ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
