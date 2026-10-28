@@ -213,7 +213,7 @@
 </Dialog.Root>
 
 <svelte:head>
-	{#await data.party then party}<title>{partyName(party)} · MLC Reader</title>{/await}
+	{#await data.party then party}<title>{partyName(party)} · PubAdmin</title>{/await}
 </svelte:head>
 
 {#await data.party}

@@ -17,20 +17,20 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>MLC Reader</title>
+	<title>PubAdmin</title>
 </svelte:head>
 
 <div class="flex min-h-screen flex-col text-stone-900">
 	<div
 		class="bg-stone-900 py-1.5 text-center font-mono text-[0.65rem] tracking-[0.25em] text-stone-300 uppercase"
 	>
-		Mechanical Licensing Collective · Public Works Data
+		PubAdmin · Public Works Data
 	</div>
 
 	<header class="border-b border-stone-900">
 		<nav class="mx-auto flex max-w-5xl flex-wrap items-end gap-x-8 gap-y-3 px-4 pt-6 pb-0">
 			<a href={resolve('/search/party')} class="group mb-3 flex items-baseline gap-1">
-				<span class="font-display text-3xl leading-none font-medium tracking-tight">MLC Reader</span
+				<span class="font-display text-3xl leading-none font-medium tracking-tight">PubAdmin</span
 				>
 				<span class="text-3xl leading-none text-accent transition-transform group-hover:-rotate-12"
 					>●</span
@@ -66,7 +66,7 @@
 		<div
 			class="mx-auto flex max-w-5xl justify-between px-4 py-4 font-mono text-[0.65rem] tracking-widest text-stone-400 uppercase"
 		>
-			<span>MLC Reader</span>
+			<span>PubAdmin</span>
 			<span>BWARM catalogue</span>
 		</div>
 	</footer>

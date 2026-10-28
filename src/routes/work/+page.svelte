@@ -63,7 +63,7 @@
 {/snippet}
 
 <svelte:head>
-	{#await data.works then works}<title>{works[0]?.title} · MLC Reader</title>{/await}
+	{#await data.works then works}<title>{works[0]?.title} · PubAdmin</title>{/await}
 </svelte:head>
 
 {#await data.works}

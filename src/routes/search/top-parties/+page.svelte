@@ -120,7 +120,7 @@
 </script>
 
 <svelte:head>
-	<title>Top parties · MLC Reader</title>
+	<title>Top parties · PubAdmin</title>
 </svelte:head>
 
 <h1 class="mb-2 text-4xl">Top parties</h1>

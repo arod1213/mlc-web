@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 function upstreamBase(): string {
@@ -6,9 +5,13 @@ function upstreamBase(): string {
 	return raw.replace(/\/$/, '');
 }
 
+function jsonError(status: number, error: string) {
+	return Response.json({ success: false, error }, { status });
+}
+
 const proxy: RequestHandler = async ({ request, params, url }) => {
 	const path = params.path;
-	if (!path) error(404, 'Not found');
+	if (!path) return jsonError(404, 'Not found');
 
 	const base = upstreamBase();
 	const target = `${base}/api/${path}${url.search}`;
@@ -26,8 +29,9 @@ const proxy: RequestHandler = async ({ request, params, url }) => {
 	let upstream: Response;
 	try {
 		upstream = await fetch(target, init);
-	} catch {
-		error(502, `Upstream API unreachable at ${base}`);
+	} catch (e) {
+		const reason = e instanceof Error ? e.message : String(e);
+		return jsonError(502, `Upstream API unreachable at ${target}: ${reason}`);
 	}
 
 	const out = new Headers();
